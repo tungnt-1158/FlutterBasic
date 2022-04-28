@@ -41,6 +41,13 @@ class MovieDetail extends StatelessWidget {
                       placeholder: 'assets/images/connexion.png',
                       image: 'https://image.tmdb.org/t/p/w500/' +
                           movie.backdropPath,
+                      imageErrorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          'assets/images/error.png',
+                          fit: BoxFit.fitHeight,
+                          height: 300,
+                        );
+                      },
                       height: 300.0,
                     ),
                   ),
@@ -52,6 +59,14 @@ class MovieDetail extends StatelessWidget {
                 child: FadeInImage.assetNetwork(
                   placeholder: 'assets/images/connexion.png',
                   image: 'https://image.tmdb.org/t/p/w500/' + movie.posterPath,
+                  imageErrorBuilder: (context, error, stackTrace) {
+                    return Image.asset(
+                      'assets/images/error.png',
+                      fit: BoxFit.fitHeight,
+                      height: 142.0,
+                      width: 92.0,
+                    );
+                  },
                   height: 142.0,
                   width: 92.0,
                 ),

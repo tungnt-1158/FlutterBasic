@@ -39,27 +39,27 @@ class _MovieListState extends State<MovieList> {
             child: CircularProgressIndicator(),
           )
         : ListView.builder(
-          // shrinkWrap: true,
-          itemCount: fetchedMovies.length,
+            // shrinkWrap: true,
+            itemCount: fetchedMovies.length,
 
-          itemBuilder: (BuildContext context, int index) {
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          MovieDetail(movie: fetchedMovies[index])),
-                );
-              },
-              child: MovieListItem(
-                thumbnail: fetchedMovies[index].posterPath,
-                title: fetchedMovies[index].title,
-                overview: fetchedMovies[index].overview,
-              ),
-            );
-          },
-        );
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            MovieDetail(movie: fetchedMovies[index])),
+                  );
+                },
+                child: MovieListItem(
+                  thumbnail: fetchedMovies[index].posterPath,
+                  title: fetchedMovies[index].title,
+                  overview: fetchedMovies[index].overview,
+                ),
+              );
+            },
+          );
   }
 }
 
@@ -87,6 +87,14 @@ class MovieListItem extends StatelessWidget {
           FadeInImage.assetNetwork(
             placeholder: 'assets/images/connexion.png',
             image: 'https://image.tmdb.org/t/p/w500/' + thumbnail,
+            imageErrorBuilder: (context, error, stackTrace) {
+              return Image.asset(
+                'assets/images/error.png',
+                fit: BoxFit.fill,
+                height: 50.0,
+                width: 50.0,
+              );
+            },
             height: 142.0,
             width: 92.0,
             fit: BoxFit.fill,
@@ -142,5 +150,3 @@ class _MovieDescription extends StatelessWidget {
     );
   }
 }
-
-
